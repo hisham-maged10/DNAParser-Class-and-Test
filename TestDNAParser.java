@@ -6,14 +6,19 @@
 import static java.lang.System.out;
 import static java.lang.System.err;
 import java.util.Scanner;
+import java.util.NoSuchElementException;
 public class TestDNAParser
 {
 	public static void main(String[] args)
+	{	
+		guiController(getDNAParser());
+	}
+	public static DNAParser getDNAParser()
 	{
 		DNAParser dnaParser=new DNAParser();
-		guiController(dnaParser);
+		try{dnaParser.getAllGenes();}catch(EmptySourceException ex){err.println("No genes in the file, Terminating"); 		System.exit(0);}
+		return dnaParser;
 	}
-	
 	public static void guiController(DNAParser dnaParser)
 	{	
 		boolean execute=true;
@@ -30,6 +35,7 @@ public class TestDNAParser
 		int choice=0;
 		try{choice=Integer.parseInt(input.nextLine());}catch(NumberFormatException ex){out.println("IncorrectResponse"); 
 		guiController(dnaParser);}
+		catch(NoSuchElementException ex){err.println("Termination not by the program, Exiting");}
 		switch(choice)
 		{
 			case 1:testListAllGenes(dnaParser);break;
@@ -48,6 +54,7 @@ public class TestDNAParser
 	private static boolean continueOperation()
 	{
 		out.print("Do you want to Reuse the program? (y/n)");
+		try{
 		switch(new Scanner(System.in).nextLine().toLowerCase().charAt(0))
 		{
 			case 'y':
@@ -56,6 +63,8 @@ public class TestDNAParser
 			case '0':return false;
 			default:out.println("Incorrect response"); return continueOperation();
 		}
+		}catch(NoSuchElementException ex){err.println("Termination not by the program, Exiting");}
+		return false;
 		
 	}
 	public static void gui()
@@ -97,6 +106,7 @@ public class TestDNAParser
 		geneIndex=Integer.parseInt(input.nextLine());
 		}while(geneIndex==-1);
 		}catch(NumberFormatException ex){out.println("Incorrect response");testHowMany(dnaParser);}
+		catch(NoSuchElementException ex){err.println("Termination not by the program, Exiting");}
 		out.print("Enter the SearchTarget: ");
 		String searchTarget=input.nextLine();
 		out.println(searchTarget+" occured in gene#"+geneIndex+" "+dnaParser.howMany(searchTarget,dnaParser.getAllGenes()[--geneIndex])+" Times.");
@@ -133,6 +143,7 @@ public class TestDNAParser
 		{
 			err.println("Error, you didn't enter a number as specified!");
 		}
+		catch(NoSuchElementException ex){err.println("Termination not by the program, Exiting");}
 	
 	}
 	public static void testGetNumberCG(DNAParser dnaParser)
@@ -149,6 +160,7 @@ public class TestDNAParser
 		{
 			err.println("Error, you didn't enter a number as specified!");
 		}
+		catch(NoSuchElementException ex){err.println("Termination not by the program, Exiting");}
 	}
 	public static void testPrintTallestGene(DNAParser dnaParser)
 	{

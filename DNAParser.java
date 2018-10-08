@@ -87,7 +87,7 @@ public class DNAParser
 	/* A method that returns the genes whom has characters more than given size as a String array for immutablility */
 	public String[] getGenesMoreThan_Chars(int size)
 	{
-		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty! ");
+		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty of DNA! ");
 		ArrayList<String> genesMoreThan=new ArrayList<String>();
 		for(int i=0,n=genesList.size();i<n;i++)
 		{
@@ -102,7 +102,7 @@ public class DNAParser
 	/* A method that searches for the number of genes that have more charactes than the given size */
 	public int getNumberOfGenesMoreThan_Chars(int size)
 	{
-		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty! ");
+		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty of DNA! ");
 		int count=0;
 		//checks each gene in the list for having a bigger size then returning it's count
 		for(int i=0,n=genesList.size();i<n;i++)
@@ -133,7 +133,7 @@ public class DNAParser
 	/* A method that returns the genes whom has C-G ratio more than given as a String array for immutablility */
 	public String[] getGenesCGRatioMoreThanPercentage(double neededRatio)
 	{
-		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty! ");
+		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty of DNA! ");
 		final double ratio=neededRatio;
 		ArrayList<String> neededGenes=new ArrayList<>();
 		for(int i=0,n=genesList.size();i<n;i++)
@@ -170,13 +170,13 @@ public class DNAParser
 	/* A method that returns the number of valid genes extracted from the dna strand */
 	public int getNumberOfGenes()
 	{
-		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty! ");
+		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty of DNA ! ");
 		return genesList.size();
 	}
 	/* A method that compares lengths of genes then returns the talles gene in the dna strand */
 	public String getTallestGene()
 	{
-		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty! ");
+		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty of DNA! ");
 		int maxLength=0;
 		int neededIndex=-1;
 		for(int i=0,n=genesList.size();i<n;i++)
@@ -193,7 +193,7 @@ public class DNAParser
 	/* A method that finds the tallest gene and returns it's length */
 	public int getLengthTallestGene()
 	{
-		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty! ");
+		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty of DNA! ");
 		return getTallestGene().length();	
 	}
 	/* the method that gets all the genes in the dna Strand */
@@ -254,7 +254,7 @@ public class DNAParser
 	/* A method that checks if a string is valid, if not a user Defined exception called EmptySourceException will be thrown*/
 	private void checkStrand(String strand)
 	{
-		if(!validateStrand(strand)) throw new EmptySourceException("The Source given is Empty!");
+		if(!validateStrand(strand)) throw new EmptySourceException("The Source given is Empty of DNA!");
 		else {/*do nothing*/}
 	}
 	private boolean validateGenesList()
@@ -263,7 +263,7 @@ public class DNAParser
 	}
 	public String[] getAllGenes()
 	{
-		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty! ");
+		if(!validateGenesList())throw new EmptySourceException("The given source for DNAStrand is empty of DNA ! ");
 		return genesList.toArray(new String[genesList.size()]);
 	}
 	private File getFile()	
@@ -284,8 +284,6 @@ public class DNAParser
 		}
 		return chooser.getSelectedFile();
 	}	
-	// A private user Defined Exception class that can be thrown by the DNAParser Class only
-	private class EmptySourceException extends RuntimeException{public EmptySourceException() { super(); } public EmptySourceException(String str){ super(str); } }
 	// A private Enum that has all the possible stopping codons.
 	private enum StopCodon {TAA,TAG,TGA;}
 }
