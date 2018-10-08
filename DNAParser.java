@@ -212,7 +212,7 @@ public class DNAParser
 			startIndex=dna.indexOf(gene,startIndex)+gene.length();
 			}
 		}
-		return genesList;
+		return (genesList.size()>0)?genesList:null;
 	}
 	/* A method that takes dna strands from a URL or A file path */
 	private String getDnaStrandFromSource(java.io.File path)
