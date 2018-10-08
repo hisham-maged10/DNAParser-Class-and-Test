@@ -1,3 +1,8 @@
+/**
+ * @author ${hisham_maged10}
+ *https://github.com/hisham-maged10
+ * ${DesktopApps}
+ */
 import static java.lang.System.out;
 import static java.lang.System.err;
 import java.util.Scanner;
